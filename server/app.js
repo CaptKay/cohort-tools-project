@@ -2,6 +2,7 @@
 //const morgan = require("morgan");
 //const cookieParser = require("cookie-parser");
 import express from "express"
+import cors from "cors"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 import connectDB from "./config/db.config.js"
@@ -23,6 +24,9 @@ const app = express();
 // ...
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors({
+  origin: ["http://localhost:5173", "http://localhost:5005"]
+}))
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
