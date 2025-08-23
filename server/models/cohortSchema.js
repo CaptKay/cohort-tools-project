@@ -2,34 +2,39 @@ import { model, Schema } from "mongoose";
 
 const cohortSchema = new Schema(
   {
-    cohortName: { type: String, required: true, unique: true },
     cohortSlug: { type: String, required: true, unique: true },
+    cohortName: { type: String, required: true },
     program: {
       type: String,
       enum: ["Web Dev", "UX/UI", "Data Analytics", "Cybersecurity"],
-      default: "Web Dev",
     },
-    format: { type: String, enum: ["Part-Time", "Full Time"]},
+    format: { type: String, enum: ["Part-Time", "Full Time"] },
     campus: {
       type: String,
-      enum: ["Paris", "Berlin", "Miami"],
+      enum: [
+        "Paris",
+        "Berlin",
+        "Miami",
+        "Madrid",
+        "Barcelona",
+        "Amesterdam",
+        "Lisbon",
+        "Remote",
+      ],
       default: "Berlin",
     },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
+    startDate: { type: Date, default: Date.now },
+    endDate: { type: Date },
     inProgress: { type: Boolean, default: false },
     programManager: {
       type: String,
-      enum: ["Sally Daher", "Alice Williams", "Charlie Brown", "Eva Edwards"],
-      default: "Sally Daher",
       required: true,
     },
     leadTeacher: {
       type: String,
-      enum: ["Florian Aube", "Bob Johnson", "Eva Edwards", "Frank Foster"],default: "Bob Johnson",
       required: true,
     },
-    totalHours: { type: Number, max: 360 },
+    totalHours: { type: Number, default: 360 },
   },
   { timestamps: true }
 );
