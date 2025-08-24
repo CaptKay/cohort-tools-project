@@ -8,7 +8,7 @@ const cohortSchema = new Schema(
       type: String,
       enum: ["Web Dev", "UX/UI", "Data Analytics", "Cybersecurity"],
     },
-    format: { type: String, enum: ["Part-Time", "Full Time"] },
+    format: { type: String, enum: ["Part Time", "Full Time"] },
     campus: {
       type: String,
       enum: [
@@ -35,6 +35,7 @@ const cohortSchema = new Schema(
       required: true,
     },
     totalHours: { type: Number, default: 360 },
+    students: [{ type: Schema.Types.ObjectId, ref: "Student" }],
   },
   { timestamps: true }
 );
