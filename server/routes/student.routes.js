@@ -22,7 +22,7 @@ router.post("/create", async (req, res) => {
 
 router.get("/all", async (req, res) => {
   try {
-    const studentData = await StudentModel.find();
+    const studentData = await StudentModel.find().populate("cohort");
     return res.status(200).json(studentData);
   } catch (error) {
     console.log(error);
@@ -33,7 +33,7 @@ router.get("/all", async (req, res) => {
 router.get("/:studentId", async (req, res) => {
   try {
     const { studentId } = req.params;
-    const student = await StudentModel.findById(studentId);
+    const student = await StudentModel.findById(studentId).populate("cohort");
     return res.status(200).json(student);
   } catch (error) {
     console.log(error);
@@ -76,6 +76,17 @@ router.delete("/delete/:studentId", async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "Error deleting the Student", error });
+  }
+});
+router.get("/cohort/:cohortId", async (req, res) => {
+  try {
+    const foundCohort = await CohortModel.findById(
+      req.params.cohortId
+    ).populate("students");
+    res.status(200).json(foundCohort);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "Error getting the Student", error });
   }
 });
 export default router;
