@@ -10,6 +10,7 @@ import connectDB from "./config/db.config.js";
 
 import cohortRoute from "./routes/cohort.routes.js";
 import studentRoute from "./routes/student.routes.js";
+import authRoute from "./routes/auth.routes.js";
 
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
@@ -40,6 +41,7 @@ app.use(cookieParser());
 // Routes
 app.use("/api/v1/cohorts", cohortRoute);
 app.use("/api/v1/students", studentRoute);
+app.use("/api/v1/auth", authRoute);
 
 app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");

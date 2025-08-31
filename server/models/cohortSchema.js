@@ -17,7 +17,7 @@ const cohortSchema = new Schema(
         "Miami",
         "Madrid",
         "Barcelona",
-        "Amesterdam",
+        "Amsterdam",
         "Lisbon",
         "Remote",
       ],

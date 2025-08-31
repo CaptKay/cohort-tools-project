@@ -37,7 +37,7 @@ router.get("/:studentId", async (req, res) => {
     return res.status(200).json(student);
   } catch (error) {
     console.log(error);
-    return req.status(500).json({ msg: "Error fetching the student", error });
+    return res.status(500).json({ msg: "Error fetching the student", error });
   }
 });
 
