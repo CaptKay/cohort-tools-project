@@ -9,34 +9,38 @@ function StudentCard({
   phone,
   program,
   image,
-  className,
 }) {
   return (
-    <Link to={`/students/details/${studentId}`}>
-      <div
-        className={`StudentCard flex justify-between items-center p-3 mb-2 bg-white shadow-sm rounded border border-gray-200 hover:bg-gray-50 ${className}`}
-      >
-        <span
-          className="flex items-center justify-center"
-          style={{ flexBasis: "20%" }}
-        >
-          <img
-            src={image || placeholderImage}
-            alt={`${firstName} ${lastName}`}
-            className="rounded-full w-10 h-10 object-cover border-2 border-gray-300"
-            onError={({ currentTarget }) => {
-              currentTarget.onerror = null;
-              currentTarget.src = placeholderImage;
-            }}
-          />
-        </span>
-        <span style={{ flexBasis: "20%" }}>
-          {firstName} {lastName}
-        </span>
-        <span style={{ flexBasis: "20%" }}>{program}</span>
-        <span style={{ flexBasis: "20%" }}>{email}</span>
-        <span style={{ flexBasis: "20%" }}>{phone}</span>
-      </div>
+    <Link to={`/students/details/${studentId}`} className="group">
+      <article className="hover-card relative overflow-hidden rounded-3xl border border-slate-800/60 bg-slate-900/60 p-5 shadow-inner shadow-slate-950/40 transition">
+        <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-purple-500 via-indigo-500 to-sky-500 opacity-0 transition duration-300 group-hover:opacity-100" />
+
+        <div className="flex flex-col gap-4 md:grid md:grid-cols-[1.2fr,1.5fr,1.2fr,1.5fr,1.2fr] md:items-center">
+          <div className="flex items-center gap-3 md:justify-start">
+            <div className="gradient-border relative rounded-2xl p-[2px]">
+              <img
+                src={image || placeholderImage}
+                alt={`${firstName} ${lastName}`}
+                className="h-12 w-12 rounded-2xl object-cover"
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null;
+                  currentTarget.src = placeholderImage;
+                }}
+              />
+            </div>
+          </div>
+
+          <p className="text-sm font-medium text-slate-100 md:text-left">
+            {firstName} {lastName}
+          </p>
+
+          <p className="text-sm text-slate-300 md:text-center">{program}</p>
+
+          <p className="text-sm text-slate-300 md:text-left">{email}</p>
+
+          <p className="text-sm text-slate-300 md:text-right">{phone}</p>
+        </div>
+      </article>
     </Link>
   );
 }
